@@ -158,49 +158,44 @@ body {
   background: var(--white);
   border: 1px solid rgba(131,129,133,0.2);
   border-radius: 20px;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
+.donate-inp {
+  flex: 1; min-width: 0;
+  padding: 13px 18px;
+  border: 1px solid rgba(131,129,133,0.3);
+  border-radius: 50px;
+  font-family: 'Onest', sans-serif;
+  font-size: 15px;
+  color: var(--navy);
+  background: var(--light);
+  outline: none;
+  box-sizing: border-box;
+}
+.donate-btn {
+  background: var(--navy);
+  color: #fff; border: none;
+  padding: 13px 22px;
+  border-radius: 50px;
+  font-family: 'Onest', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer; white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity .2s;
+}
+.donate-btn:hover { opacity: 0.85; }
 
-/* robokassa widget overrides */
-.donate-card > div:first-child,
-.donate-card form {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  width: 100% !important;
-  max-width: 100% !important;
+/* ── SERVICE ICON ── */
+.s-icon {
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+  color: var(--navy);
+  opacity: 0.5;
 }
-.donate-card form input[name="OutSum"],
-.donate-card form input[type="text"] {
-  flex: 1 !important; min-width: 0 !important;
-  padding: 13px 18px !important;
-  border: 1px solid rgba(131,129,133,0.3) !important;
-  border-radius: 50px !important;
-  font-family: 'Bricolage Grotesque', sans-serif !important;
-  font-size: 15px !important;
-  color: var(--navy) !important;
-  background: var(--light) !important;
-  outline: none !important; box-shadow: none !important;
-}
-.donate-card form input[type="submit"] {
-  background: var(--navy) !important;
-  color: #fff !important; border: none !important;
-  padding: 13px 22px !important;
-  font-family: 'Bricolage Grotesque', sans-serif !important;
-  font-size: 11px !important; font-weight: 600 !important;
-  letter-spacing: 1px !important;
-  text-transform: uppercase !important;
-  border-radius: 50px !important;
-  cursor: pointer !important; white-space: nowrap !important;
-  flex-shrink: 0 !important;
-  transition: opacity .2s !important;
-}
-.donate-card form input[type="submit"]:hover { opacity: 0.85 !important; }
-.donate-card img { display: none !important; }
-.donate-card a[href*="robokassa"],
-.donate-card a[href*="robo"] { display: none !important; }
-.donate-card table { width: 100% !important; max-width: 100% !important; }
-.donate-card br { display: none !important; }
 
 /* ── SERVICE ROW ── */
 .service {
@@ -271,9 +266,8 @@ body {
   <div class="label">Поддержать</div>
 
   <div class="donate-card">
-    <script type="text/javascript"
-      src="https://auth.robokassa.ru/Merchant/PaymentForm/FormFLS.js?EncodedInvoiceId=isoxs4WF2kGHX4gRvzV_cQ&DefaultSum=0.00">
-    </script>
+    <input id="donateInp" class="donate-inp" type="number" min="1" step="1" placeholder="Сумма, ₽">
+    <button class="donate-btn" onclick="var v=document.getElementById('donateInp').value||'';if(!v||v<1){document.getElementById('donateInp').focus();return;}window.open('https://auth.robokassa.ru/Merchant/PaymentForm/FormFLS?EncodedInvoiceId=isoxs4WF2kGHX4gRvzV_cQ&OutSum='+v,'_blank');">Оплатить</button>
   </div>
 
   <div class="divider"></div>
@@ -282,22 +276,27 @@ body {
   <div class="label">♥ Любовь и отношения</div>
 
   <a href="#" class="service">
+    <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.64 5.64l1.41 1.41M16.95 16.95l1.41 1.41M5.64 18.36l1.41-1.41M16.95 7.05l1.41-1.41"/></svg>
     <div class="s-info"><div class="s-name">Мини-разбор ситуации</div></div>
     <div class="s-price"><span class="s-rub">5 000 ₽</span><span class="s-eur">50 €</span></div>
   </a>
   <a href="#" class="service">
+    <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
     <div class="s-info"><div class="s-name">Полный разбор отношений</div><div class="s-sub">Психотип · мысли · намерения</div></div>
     <div class="s-price"><span class="s-rub">8 500 ₽</span><span class="s-eur">85 €</span></div>
   </a>
   <a href="#" class="service">
+    <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/></svg>
     <div class="s-info"><div class="s-name">Есть ли будущее у пары</div><div class="s-sub">9 карт</div></div>
     <div class="s-price"><span class="s-rub">9 000 ₽</span><span class="s-eur">90 €</span></div>
   </a>
   <a href="#" class="service">
+    <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.41"/></svg>
     <div class="s-info"><div class="s-name">Вернётся ли человек</div><div class="s-sub">9 карт</div></div>
     <div class="s-price"><span class="s-rub">9 000 ₽</span><span class="s-eur">90 €</span></div>
   </a>
   <a href="#" class="service">
+    <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
     <div class="s-info"><div class="s-name">Есть ли любовница / любовник</div></div>
     <div class="s-price"><span class="s-rub">8 500 ₽</span><span class="s-eur">85 €</span></div>
   </a>
@@ -308,80 +307,33 @@ body {
   <div class="label">✦ Деньги и работа</div>
 
   <a href="#" class="service">
+    <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
     <div class="s-info"><div class="s-name">Диагностика финансовой ситуации</div></div>
     <div class="s-price"><span class="s-rub">5 000 ₽</span><span class="s-eur">50 €</span></div>
   </a>
   <a href="#" class="service">
+    <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
     <div class="s-info"><div class="s-name">Карьерный потенциал</div><div class="s-sub">7 карт</div></div>
     <div class="s-price"><span class="s-rub">7 000 ₽</span><span class="s-eur">70 €</span></div>
   </a>
   <a href="#" class="service">
+    <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
     <div class="s-info"><div class="s-name">Как увеличить доход</div></div>
     <div class="s-price"><span class="s-rub">9 000 ₽</span><span class="s-eur">90 €</span></div>
   </a>
   <a href="#" class="service">
+    <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
     <div class="s-info"><div class="s-name">Работа или бизнес</div><div class="s-sub">Перспективы и развитие</div></div>
     <div class="s-price"><span class="s-rub">9 000 ₽</span><span class="s-eur">90 €</span></div>
   </a>
   <a href="#" class="service">
+    <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
     <div class="s-info"><div class="s-name">Прогноз по финансам на год</div><div class="s-sub">По месяцам</div></div>
     <div class="s-price"><span class="s-rub">25 000 ₽</span><span class="s-eur">250 €</span></div>
   </a>
 
 </div>
 
-<script>
-var _donateReady = false;
-
-function hideRoboJunk(card) {
-  Array.from(card.children).forEach(function(el) {
-    if (!el.dataset.customDonate) {
-      el.style.cssText = 'position:absolute!important;opacity:0!important;pointer-events:none!important;height:1px!important;overflow:hidden!important;width:1px!important;';
-    }
-  });
-}
-
-function setupDonate() {
-  if (_donateReady) return;
-  var card = document.querySelector('.donate-card');
-  if (!card) return;
-  var origForm = card.querySelector('form');
-  if (!origForm) return;
-
-  _donateReady = true;
-
-  // спрятать всё что вставил Robokassa
-  hideRoboJunk(card);
-
-  var origAmount = origForm.querySelector('input[name="OutSum"]') || origForm.querySelector('input[type="text"]');
-
-  // наша красивая форма
-  var wrap = document.createElement('div');
-  wrap.dataset.customDonate = 'true';
-  wrap.style.cssText = 'display:flex;gap:8px;width:100%;';
-
-  var inp = document.createElement('input');
-  inp.type = 'text';
-  inp.placeholder = 'Сумма, ₽';
-  inp.style.cssText = 'flex:1;min-width:0;padding:13px 18px;border:1px solid rgba(131,129,133,0.3);border-radius:50px;font-family:Onest,sans-serif;font-size:15px;color:#1C2952;background:#F7F7F7;outline:none;box-sizing:border-box;';
-
-  var btn = document.createElement('button');
-  btn.textContent = 'Оплатить';
-  btn.type = 'button';
-  btn.style.cssText = 'background:#1C2952;color:#fff;border:none;padding:13px 22px;border-radius:50px;font-family:Onest,sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:opacity .2s;';
-  btn.onmouseover = function(){ this.style.opacity='0.85'; };
-  btn.onmouseout  = function(){ this.style.opacity='1'; };
-
-  btn.addEventListener('click', function() {
-    var val = inp.value.replace(/[^0-9.,]/g,'').replace(',','.') || '0.00';
-    if (origAmount) origAmount.value = val;
-    var sub = origForm.querySelector('input[type="submit"]');
-    if (sub) sub.click(); else origForm.submit();
-  });
-
-  wrap.appendChild(inp);
-  wrap.appendChild(btn);
-  card.appendChild(wrap);
-}
-
-// MutationObserver — прячет всё новое что Robokassa доб
+</body>
+</html>
+                                                                                                                                                                                                                  
