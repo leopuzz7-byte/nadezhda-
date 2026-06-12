@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Надежда</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --navy:  #1C2952;
+  --gray:  #838185;
+  --light: #F7F7F7;
+  --white: #FFFFFF;
+}
+
+body {
+  background: var(--light);
+  color: var(--navy);
+  font-family: 'Onest', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.page {
+  width: 100%;
+  max-width: 430px;
+  padding: 32px 18px 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── HERO ── */
+.hero {
+  width: 100%;
+  padding: 28px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--white);
+  border-radius: 24px;
+  border: 1px solid rgba(131,129,133,0.18);
+  box-shadow: 0 2px 20px rgba(28,41,82,0.05);
+  margin-bottom: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* navy arc at top */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 100px;
+  background: var(--navy);
+  border-radius: 24px 24px 60% 60% / 24px 24px 44px 44px;
+}
+
+.photo {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  object-fit: cover; object-position: center 10%;
+  border: 3px solid var(--white);
+  margin-bottom: 18px;
+  position: relative; z-index: 1;
+  box-shadow: 0 0 0 4px var(--navy);
+}
+.photo-ph {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  border: 3px solid var(--white);
+  background: #EEF0F6;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+  color: var(--gray); font-size: 10px; letter-spacing: 2px;
+  position: relative; z-index: 1;
+  box-shadow: 0 0 0 4px var(--navy);
+}
+
+.name {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 46px; font-weight: 400;
+  letter-spacing: 6px; text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.subtitle {
+  font-size: 10px; letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  width: 100%; height: 1px;
+  background: var(--gray);
+  opacity: 0.2;
+  margin: 4px 0;
+}
+
+/* ── LABEL ── */
+.label {
+  font-size: 10px; letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  align-self: flex-start;
+  margin: 8px 0 3px;
+  font-weight: 500;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 15px 20px;
+  font-family: 'Onest', sans-serif;
+  font-size: 12px; font-weight: 500; letter-spacing: 1.5px;
+  text-transform: uppercase; text-decoration: none;
+  transition: all .2s; cursor: pointer; border: none;
+  border-radius: 50px;
+}
+
+/* navy fill — primary */
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+}
+.btn-primary:hover { opacity: 0.88; }
+
+/* white card — secondary */
+.btn-secondary {
+  background: var(--white);
+  color: var(--navy);
+  border: 1px solid rgba(131,129,133,0.3);
+}
+.btn-secondary:hover { border-color: var(--navy); }
+
+/* gray fill — tertiary */
+.btn-gray {
+  background: var(--gray);
+  color: var(--white);
+}
+.btn-gray:hover { opacity: 0.88; }
+
+/* ── DONATE CARD ── */
+.donate-card {
+  width: 100%;
+  padding: 20px 18px;
+  background: var(--white);
+  border: 1px solid rgba(131,129,133,0.2);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* robokassa widget overrides */
+.donate-card > div:first-child,
+.donate-card form {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.donate-card form input[name="OutSum"],
+.donate-card form input[type="text"] {
+  flex: 1 !important; min-width: 0 !important;
+  padding: 13px 18px !important;
+  border: 1px solid rgba(131,129,133,0.3) !important;
+  border-radius: 50px !important;
+  font-family: 'Bricolage Grotesque', sans-serif !important;
+  font-size: 15px !important;
+  color: var(--navy) !important;
+  background: var(--light) !important;
+  outline: none !important; box-shadow: none !important;
+}
+.donate-card form input[type="submit"] {
+  background: var(--navy) !important;
+  color: #fff !important; border: none !important;
+  padding: 13px 22px !important;
+  font-family: 'Bricolage Grotesque', sans-serif !important;
+  font-size: 11px !important; font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  border-radius: 50px !important;
+  cursor: pointer !important; white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  transition: opacity .2s !important;
+}
+.donate-card form input[type="submit"]:hover { opacity: 0.85 !important; }
+.donate-card img { display: none !important; }
+.donate-card a[href*="robokassa"],
+.donate-card a[href*="robo"] { display: none !important; }
+.donate-card table { width: 100% !important; max-width: 100% !important; }
+.donate-card br { display: none !important; }
+
+/* ── SERVICE ROW ── */
+.service {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 14px 18px;
+  background: var(--white);
+  border: 1px solid rgba(131,129,133,0.2);
+  border-radius: 16px;
+  text-decoration: none; color: var(--navy);
+  transition: all .2s; gap: 10px;
+}
+.service:hover {
+  border-color: var(--navy);
+  box-shadow: 0 2px 12px rgba(28,41,82,0.08);
+}
+
+.s-info { flex: 1; min-width: 0; }
+.s-name {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 17px; font-weight: 400; line-height: 1.3;
+}
+.s-sub {
+  font-size: 11px; color: var(--gray);
+  margin-top: 2px; font-family: 'Onest', sans-serif;
+}
+
+.s-price { text-align: right; flex-shrink: 0; }
+.s-rub {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 17px; font-weight: 400; display: block; color: var(--navy);
+}
+.s-eur { font-size: 10px; color: var(--gray); letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="nadezhda.png" class="photo" alt="Надежда"
+         onerror="this.style.display='none';document.getElementById('ph').style.display='flex'">
+    <div id="ph" class="photo-ph" style="display:none">ФОТО</div>
+    <div class="name">Надежда</div>
+    <div class="subtitle">Нумеролог &nbsp;·&nbsp; Психолог &nbsp;·&nbsp; Life-коуч</div>
+  </div>
+
+  <!-- CONTACTS -->
+  <div class="label">Связь и запись</div>
+
+  <a href="https://wa.me/79194871235" class="btn btn-primary" target="_blank">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    WhatsApp +7 919 487-12-35
+  </a>
+
+  <a href="https://serdcepiligrima.com/" class="btn btn-secondary" target="_blank">
+    serdcepiligrima.com
+  </a>
+
+  <a href="#" class="btn btn-secondary" target="_blank">
+    Нумерологический калькулятор
+  </a>
+
+  <div class="divider"></div>
+
+  <!-- DONATE -->
+  <div class="label">Поддержать</div>
+
+  <div class="donate-card">
+    <script type="text/javascript"
+      src="https://auth.robokassa.ru/Merchant/PaymentForm/FormFLS.js?EncodedInvoiceId=isoxs4WF2kGHX4gRvzV_cQ&DefaultSum=0.00">
+    </script>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- LOVE -->
+  <div class="label">♥ Любовь и отношения</div>
+
+  <a href="#" class="service">
+    <div class="s-info"><div class="s-name">Мини-разбор ситуации</div></div>
+    <div class="s-price"><span class="s-rub">5 000 ₽</span><span class="s-eur">50 €</span></div>
+  </a>
+  <a href="#" class="service">
+    <div class="s-info"><div class="s-name">Полный разбор отношений</div><div class="s-sub">Психотип · мысли · намерения</div></div>
+    <div class="s-price"><span class="s-rub">8 500 ₽</span><span class="s-eur">85 €</span></div>
+  </a>
+  <a href="#" class="service">
+    <div class="s-info"><div class="s-name">Есть ли будущее у пары</div><div class="s-sub">9 карт</div></div>
+    <div class="s-price"><span class="s-rub">9 000 ₽</span><span class="s-eur">90 €</span></div>
+  </a>
+  <a href="#" class="service">
+    <div class="s-info"><div class="s-name">Вернётся ли человек</div><div class="s-sub">9 карт</div></div>
+    <div class="s-price"><span class="s-rub">9 000 ₽</span><span class="s-eur">90 €</span></div>
+  </a>
+  <a href="#" class="service">
+    <div class="s-info"><div class="s-name">Есть ли любовница / любовник</div></div>
+    <div class="s-price"><span class="s-rub">8 500 ₽</span><span class="s-eur">85 €</span></div>
+  </a>
+
+  <div class="divider"></div>
+
+  <!-- MONEY -->
+  <div class="label">✦ Деньги и работа</div>
+
+  <a href="#" class="service">
+    <div class="s-info"><div class="s-name">Диагностика финансовой ситуации</div></div>
+    <div class="s-price"><span class="s-rub">5 000 ₽</span><span class="s-eur">50 €</span></div>
+  </a>
+  <a href="#" class="service">
+    <div class="s-info"><div class="s-name">Карьерный потенциал</div><div class="s-sub">7 карт</div></div>
+    <div class="s-price"><span class="s-rub">7 000 ₽</span><span class="s-eur">70 €</span></div>
+  </a>
+  <a href="#" class="service">
+    <div class="s-info"><div class="s-name">Как увеличить доход</div></div>
+    <div class="s-price"><span class="s-rub">9 000 ₽</span><span class="s-eur">90 €</span></div>
+  </a>
+  <a href="#" class="service">
+    <div class="s-info"><div class="s-name">Работа или бизнес</div><div class="s-sub">Перспективы и развитие</div></div>
+    <div class="s-price"><span class="s-rub">9 000 ₽</span><span class="s-eur">90 €</span></div>
+  </a>
+  <a href="#" class="service">
+    <div class="s-info"><div class="s-name">Прогноз по финансам на год</div><div class="s-sub">По месяцам</div></div>
+    <div class="s-price"><span class="s-rub">25 000 ₽</span><span class="s-eur">250 €</span></div>
+  </a>
+
+</div>
+
+<script>
+var _donateReady = false;
+
+function hideRoboJunk(card) {
+  Array.from(card.children).forEach(function(el) {
+    if (!el.dataset.customDonate) {
+      el.style.cssText = 'position:absolute!important;opacity:0!important;pointer-events:none!important;height:1px!important;overflow:hidden!important;width:1px!important;';
+    }
+  });
+}
+
+function setupDonate() {
+  if (_donateReady) return;
+  var card = document.querySelector('.donate-card');
+  if (!card) return;
+  var origForm = card.querySelector('form');
+  if (!origForm) return;
+
+  _donateReady = true;
+
+  // спрятать всё что вставил Robokassa
+  hideRoboJunk(card);
+
+  var origAmount = origForm.querySelector('input[name="OutSum"]') || origForm.querySelector('input[type="text"]');
+
+  // наша красивая форма
+  var wrap = document.createElement('div');
+  wrap.dataset.customDonate = 'true';
+  wrap.style.cssText = 'display:flex;gap:8px;width:100%;';
+
+  var inp = document.createElement('input');
+  inp.type = 'text';
+  inp.placeholder = 'Сумма, ₽';
+  inp.style.cssText = 'flex:1;min-width:0;padding:13px 18px;border:1px solid rgba(131,129,133,0.3);border-radius:50px;font-family:Onest,sans-serif;font-size:15px;color:#1C2952;background:#F7F7F7;outline:none;box-sizing:border-box;';
+
+  var btn = document.createElement('button');
+  btn.textContent = 'Оплатить';
+  btn.type = 'button';
+  btn.style.cssText = 'background:#1C2952;color:#fff;border:none;padding:13px 22px;border-radius:50px;font-family:Onest,sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:opacity .2s;';
+  btn.onmouseover = function(){ this.style.opacity='0.85'; };
+  btn.onmouseout  = function(){ this.style.opacity='1'; };
+
+  btn.addEventListener('click', function() {
+    var val = inp.value.replace(/[^0-9.,]/g,'').replace(',','.') || '0.00';
+    if (origAmount) origAmount.value = val;
+    var sub = origForm.querySelector('input[type="submit"]');
+    if (sub) sub.click(); else origForm.submit();
+  });
+
+  wrap.appendChild(inp);
+  wrap.appendChild(btn);
+  card.appendChild(wrap);
+}
+
+// MutationObserver — прячет всё новое что Robokassa доб
