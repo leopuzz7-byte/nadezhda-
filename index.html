@@ -22,7 +22,15 @@ body { background:var(--light); color:var(--navy); font-family:'Onest',sans-seri
 .btn { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:15px 20px; font-family:'Onest',sans-serif; font-size:12px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; transition:all .2s; cursor:pointer; border:none; border-radius:50px; }
 .btn-primary { background:var(--navy); color:var(--white); }
 .btn-secondary { background:var(--white); color:var(--navy); border:1px solid rgba(131,129,133,0.3); }
-.donate-card { width:100%; padding:18px; background:var(--white); border:1px solid rgba(131,129,133,0.2); border-radius:20px; overflow:hidden; min-height:54px; }
+/* DONATE — показываем весь виджет, стилизуем */
+.donate-card { width:100%; padding:18px; background:var(--white); border:1px solid rgba(131,129,133,0.2); border-radius:20px; min-height:54px; }
+.donate-card form { display:flex!important; align-items:center!important; gap:8px!important; width:100%!important; font-size:0!important; }
+.donate-card form input[type="text"] { display:block!important; flex:1!important; min-width:0!important; padding:13px 18px!important; border:1px solid rgba(131,129,133,0.3)!important; border-radius:50px!important; font-family:'Onest',sans-serif!important; font-size:15px!important; color:var(--navy)!important; background:var(--light)!important; outline:none!important; box-shadow:none!important; }
+.donate-card form input[type="submit"] { display:block!important; background:var(--navy)!important; color:#fff!important; border:none!important; padding:13px 22px!important; border-radius:50px!important; font-family:'Onest',sans-serif!important; font-size:11px!important; font-weight:600!important; letter-spacing:1px!important; text-transform:uppercase!important; cursor:pointer!important; white-space:nowrap!important; flex-shrink:0!important; }
+.donate-card form img { display:block!important; height:28px!important; width:auto!important; flex-shrink:0!important; opacity:0.7; }
+.donate-card form a { display:flex!important; align-items:center!important; flex-shrink:0!important; }
+.donate-card br { display:none!important; }
+/* SERVICE ROWS */
 .s-icon { width:22px; height:22px; flex-shrink:0; color:var(--navy); opacity:0.45; }
 .service-wrap { width:100%; }
 .service { display:flex; align-items:center; justify-content:space-between; width:100%; padding:14px 18px; background:var(--white); border:1px solid rgba(131,129,133,0.2); border-radius:16px; color:var(--navy); transition:all .2s; gap:10px; cursor:pointer; user-select:none; }
@@ -165,49 +173,6 @@ function togglePay(el) {
   document.querySelectorAll('.service').forEach(function(s){ s.classList.remove('active'); });
   if (!isOpen) { reveal.style.display='block'; el.classList.add('active'); }
 }
-
-/* Убрать лого Robokassa: прячем всё кроме input и кнопки */
-function cleanRobo() {
-  var dc = document.getElementById('dc');
-  if (!dc) return;
-  var inp = dc.querySelector('input[type="text"]');
-  var btn = dc.querySelector('input[type="submit"]');
-  if (!inp || !btn) { setTimeout(cleanRobo, 300); return; }
-
-  /* собираем предков inp и btn */
-  var keep = [inp, btn];
-  var p = inp.parentElement;
-  while (p && p !== dc) { keep.push(p); p = p.parentElement; }
-  p = btn.parentElement;
-  while (p && p !== dc) { keep.push(p); p = p.parentElement; }
-
-  /* прячем всё лишнее */
-  dc.querySelectorAll('*').forEach(function(node) {
-    if (keep.indexOf(node) === -1) {
-      node.style.setProperty('display','none','important');
-    } else if (node !== inp && node !== btn) {
-      /* предки-таблицы → block */
-      var t = node.tagName.toLowerCase();
-      if (['table','tbody','thead','tr','td','th'].indexOf(t) !== -1) {
-        node.style.setProperty('display','block','important');
-        node.style.setProperty('width','100%','important');
-      }
-    }
-  });
-
-  /* стиль формы */
-  var form = dc.querySelector('form');
-  if (form) {
-    form.style.cssText = 'display:flex!important;align-items:center!important;gap:8px!important;width:100%!important;';
-  }
-
-  /* стиль поля ввода */
-  inp.style.cssText = 'flex:1!important;min-width:0!important;padding:13px 18px!important;border:1px solid rgba(131,129,133,0.3)!important;border-radius:50px!important;font-family:Onest,sans-serif!important;font-size:15px!important;color:#1C2952!important;background:#F7F7F7!important;outline:none!important;box-shadow:none!important;display:block!important;box-sizing:border-box!important;';
-
-  /* стиль кнопки */
-  btn.style.cssText = 'display:block!important;background:#1C2952!important;color:#fff!important;border:none!important;padding:13px 22px!important;border-radius:50px!important;font-family:Onest,sans-serif!important;font-size:11px!important;font-weight:600!important;letter-spacing:1px!important;text-transform:uppercase!important;cursor:pointer!important;white-space:nowrap!important;flex-shrink:0!important;';
-}
-setTimeout(cleanRobo, 600);
 </script>
 </body>
 </html>
