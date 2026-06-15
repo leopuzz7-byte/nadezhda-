@@ -177,7 +177,7 @@ function scaleRobo() {
   var naturalW = 436;
   var cardW = dc.clientWidth;
   if (cardW < 10) return;
-  var scale = Math.min(1, cardW / naturalW);
+  var scale = Math.min(1, (cardW - 36) / naturalW);
   iframe.style.display = 'block';
   iframe.style.width = naturalW + 'px';
   iframe.style.height = '70px';
