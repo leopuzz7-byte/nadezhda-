@@ -22,15 +22,7 @@ body { background:var(--light); color:var(--navy); font-family:'Onest',sans-seri
 .btn { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:15px 20px; font-family:'Onest',sans-serif; font-size:12px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; transition:all .2s; cursor:pointer; border:none; border-radius:50px; }
 .btn-primary { background:var(--navy); color:var(--white); }
 .btn-secondary { background:var(--white); color:var(--navy); border:1px solid rgba(131,129,133,0.3); }
-/* DONATE */
-.donate-card { width:100%; padding:16px 18px; background:var(--white); border:1px solid rgba(131,129,133,0.2); border-radius:20px; }
-.donate-card form { display:flex!important; align-items:center!important; flex-wrap:wrap!important; gap:8px!important; width:100%!important; font-size:0!important; }
-.donate-card form input[type="text"] { display:block!important; flex:1!important; min-width:60px!important; padding:13px 16px!important; border:1px solid rgba(131,129,133,0.3)!important; border-radius:50px!important; font-family:'Onest',sans-serif!important; font-size:15px!important; color:var(--navy)!important; background:var(--light)!important; outline:none!important; box-shadow:none!important; }
-.donate-card form input[type="submit"] { display:block!important; background:var(--navy)!important; color:#fff!important; border:none!important; padding:13px 20px!important; border-radius:50px!important; font-family:'Onest',sans-serif!important; font-size:11px!important; font-weight:600!important; letter-spacing:1px!important; text-transform:uppercase!important; cursor:pointer!important; white-space:nowrap!important; flex-shrink:0!important; }
-.donate-card form a { display:flex!important; align-items:center!important; justify-content:flex-start!important; width:100%!important; padding-top:4px!important; }
-.donate-card form a img { display:block!important; height:20px!important; width:auto!important; opacity:0.6!important; }
-.donate-card form img:not(a img) { display:block!important; height:20px!important; width:auto!important; opacity:0.6!important; }
-.donate-card br { display:none!important; }
+.donate-card { width:100%; padding:14px 18px; background:var(--white); border:1px solid rgba(131,129,133,0.2); border-radius:20px; overflow:hidden; }
 /* SERVICE ROWS */
 .s-icon { width:22px; height:22px; flex-shrink:0; color:var(--navy); opacity:0.45; }
 .service-wrap { width:100%; }
@@ -174,6 +166,29 @@ function togglePay(el) {
   document.querySelectorAll('.service').forEach(function(s){ s.classList.remove('active'); });
   if (!isOpen) { reveal.style.display='block'; el.classList.add('active'); }
 }
+
+// Виджет Робокассы грузится в iframe 436px шириной.
+// Масштабируем его под ширину карточки чтобы лого влезло целиком.
+function scaleRobo() {
+  var dc = document.getElementById('dc');
+  if (!dc) return;
+  var iframe = dc.querySelector('iframe');
+  if (!iframe) return;
+  var naturalW = 436;
+  var cardW = dc.clientWidth;
+  if (cardW < 10) return;
+  var scale = Math.min(1, cardW / naturalW);
+  iframe.style.display = 'block';
+  iframe.style.width = naturalW + 'px';
+  iframe.style.height = '70px';
+  iframe.style.border = 'none';
+  iframe.style.transformOrigin = 'top left';
+  iframe.style.transform = 'scale(' + scale + ')';
+  dc.style.height = Math.ceil(70 * scale + 4) + 'px';
+}
+setTimeout(scaleRobo, 500);
+setTimeout(scaleRobo, 1200);
+window.addEventListener('resize', scaleRobo);
 </script>
 </body>
 </html>
