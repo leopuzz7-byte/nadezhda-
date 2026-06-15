@@ -22,7 +22,7 @@ body { background:var(--light); color:var(--navy); font-family:'Onest',sans-seri
 .btn { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:15px 20px; font-family:'Onest',sans-serif; font-size:12px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; transition:all .2s; cursor:pointer; border:none; border-radius:50px; }
 .btn-primary { background:var(--navy); color:var(--white); }
 .btn-secondary { background:var(--white); color:var(--navy); border:1px solid rgba(131,129,133,0.3); }
-.donate-card { width:100%; padding:14px 18px; background:var(--white); border:1px solid rgba(131,129,133,0.2); border-radius:20px; overflow:hidden; }
+.donate-card { width:100%; padding:0; background:var(--white); border:1px solid rgba(131,129,133,0.2); border-radius:20px; overflow:hidden; }
 /* SERVICE ROWS */
 .s-icon { width:22px; height:22px; flex-shrink:0; color:var(--navy); opacity:0.45; }
 .service-wrap { width:100%; }
@@ -56,7 +56,7 @@ body { background:var(--light); color:var(--navy); font-family:'Onest',sans-seri
 
 <div class="label">Поддержать Надежду любой суммой</div>
 <div class="donate-card" id="dc">
-  <script type="text/javascript" src="https://auth.robokassa.ru/Merchant/PaymentForm/FormFLS.js?EncodedInvoiceId=isoxs4WF2kGHX4gRvzV_cQ&DefaultSum=0.00"></script>
+  <script type="text/javascript" src="https://auth.robokassa.ru/Merchant/PaymentForm/FormFLS.js?EncodedInvoiceId=U0f_B6lJIk6LgKe62319DA&DefaultSum=0.00"></script>
 </div>
 
 <div class="divider"></div>
@@ -167,24 +167,23 @@ function togglePay(el) {
   if (!isOpen) { reveal.style.display='block'; el.classList.add('active'); }
 }
 
-// Виджет Робокассы грузится в iframe 436px шириной.
-// Масштабируем его под ширину карточки чтобы лого влезло целиком.
 function scaleRobo() {
   var dc = document.getElementById('dc');
   if (!dc) return;
   var iframe = dc.querySelector('iframe');
   if (!iframe) return;
   var naturalW = 436;
-  var cardW = dc.clientWidth;
+  var cardW = dc.clientWidth; // padding:0, so full width is content width
   if (cardW < 10) return;
-  var scale = Math.min(1, (cardW - 36) / naturalW);
+  var scale = Math.min(1, cardW / naturalW);
   iframe.style.display = 'block';
   iframe.style.width = naturalW + 'px';
   iframe.style.height = '70px';
   iframe.style.border = 'none';
   iframe.style.transformOrigin = 'top left';
   iframe.style.transform = 'scale(' + scale + ')';
-  dc.style.height = Math.ceil(70 * scale + 4) + 'px';
+  dc.style.height = Math.ceil(70 * scale) + 'px';
+  dc.style.borderRadius = '20px';
 }
 setTimeout(scaleRobo, 500);
 setTimeout(scaleRobo, 1200);
