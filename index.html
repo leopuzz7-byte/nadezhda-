@@ -2,19 +2,20 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Надежда</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Надежда Эмбер</title>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 :root { --navy:#1C2952; --gray:#838185; --light:#F7F7F7; --white:#FFFFFF; }
+html, body { overflow-x:hidden; }
 body { background:var(--light); color:var(--navy); font-family:'Onest',sans-serif; font-weight:300; min-height:100vh; display:flex; justify-content:center; }
 .page { width:100%; max-width:430px; padding:32px 18px 72px; display:flex; flex-direction:column; align-items:center; gap:8px; }
 .hero { width:100%; padding:28px 24px 26px; display:flex; flex-direction:column; align-items:center; text-align:center; background:var(--white); border-radius:24px; border:1px solid rgba(131,129,133,0.18); box-shadow:0 2px 20px rgba(28,41,82,0.05); margin-bottom:4px; position:relative; overflow:hidden; }
 .hero::before { content:''; position:absolute; top:0; left:0; right:0; height:100px; background:var(--navy); border-radius:24px 24px 60% 60%/24px 24px 44px 44px; }
-.photo { width:130px; height:130px; border-radius:50%; object-fit:cover; object-position:center 10%; border:3px solid var(--white); margin-bottom:18px; position:relative; z-index:1; box-shadow:0 0 0 4px var(--navy); }
-.name { font-family:'Bodoni Moda',serif; font-size:46px; font-weight:400; letter-spacing:6px; text-transform:uppercase; color:var(--navy); margin-bottom:10px; line-height:1; }
-.subtitle { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gray); white-space:nowrap; font-weight:400; }
+.photo { width:130px; height:130px; border-radius:50%; object-fit:cover; object-position:center 15%; border:3px solid var(--white); margin-bottom:18px; position:relative; z-index:1; box-shadow:0 0 0 4px var(--navy); }
+.name { font-family:'Bodoni Moda',serif; font-size:clamp(26px,8vw,42px); font-weight:400; letter-spacing:clamp(2px,1.2vw,5px); text-transform:uppercase; color:var(--navy); margin-bottom:10px; line-height:1.1; word-break:break-word; }
+.subtitle { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:400; white-space:normal; text-align:center; }
 .divider { width:100%; height:1px; background:var(--gray); opacity:0.2; margin:4px 0; }
 .label { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gray); align-self:flex-start; margin:8px 0 3px; font-weight:500; }
 .section-title { font-family:'Bodoni Moda',serif; font-size:28px; font-weight:400; letter-spacing:4px; text-transform:uppercase; color:var(--navy); align-self:flex-start; margin:18px 0 4px; }
@@ -42,8 +43,8 @@ body { background:var(--light); color:var(--navy); font-family:'Onest',sans-seri
 <div class="page">
 
 <div class="hero">
-  <img src="nadezhda.png" class="photo" alt="N" onerror="this.style.display='none'">
-  <div class="name">Надежда</div>
+  <img src="nadezhda.png" class="photo" alt="Надежда Эмбер" onerror="this.style.display='none'">
+  <div class="name">Надежда Эмбер</div>
   <div class="subtitle">Нумеролог &nbsp;&middot;&nbsp; Психолог &nbsp;&middot;&nbsp; Life-коуч</div>
 </div>
 
@@ -173,7 +174,7 @@ function scaleRobo() {
   var iframe = dc.querySelector('iframe');
   if (!iframe) return;
   var naturalW = 436;
-  var cardW = dc.clientWidth; // padding:0, so full width is content width
+  var cardW = dc.clientWidth;
   if (cardW < 10) return;
   var scale = Math.min(1, cardW / naturalW);
   iframe.style.display = 'block';
